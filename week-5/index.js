@@ -1,34 +1,15 @@
 const express = require("express");
-const port = 3000;
+const cors = require("cors");
+
 const app = express();
+app.use(cors()); // Allow all origins
 
+app.use(express.json());
 
-function multi(a,b){
-          
-               return(a*b);
+app.post("/sum", (req, res) => {
+  const num1 = parseInt(req.query.num1);
+  const num2 = parseInt(req.query.num2);
+  res.json({ sum: num1 + num2 });
+});
 
-}
-
-app.get('/multi',(req,res)=>{
-         const a = parseInt(req.query.a);
-         const b = parseInt(req.query.b);
-         res.json({ans:multi(a,b)});
-
-})
-
-function sum(a,b){
-               
-               return a+b;
-
-}
-app.get("/sum",(req,res)=>{
-               const a = parseInt(req.query.a);
-               const b = parseInt(req.query.b);
-        res.json({
-               ans:sum(a,b)
-        })
-})
-
-app.listen(port,()=>{
-               console.log(` this is running on port ${port}`);
-})
+app.listen(3000, () => console.log("Server running on port 3000"));
