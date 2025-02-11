@@ -3,8 +3,8 @@ const { UserModel, TodoModel } = require("./db");
 const { auth, JWT_SECRET } = require("./auth");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
-
-mongoose.connect("mongodb://localhost:27017/")
+const bcrypt = require('bcrypt');
+mongoose.connect("mongodb://localhost:27017/todosapp")
 
 const app = express();
 app.use(express.json());
@@ -13,10 +13,11 @@ app.post("/signup", async function(req, res) {
     const email = req.body.email;
     const password = req.body.password;
     const name = req.body.name;
-
+    const hashedPassword = await bcrypt.hash(password,5);
+    console.log(hashedPassword);
     await UserModel.create({
         email: email,
-        password: password,
+        password: hashedPassword,
         name: name
     });
     
