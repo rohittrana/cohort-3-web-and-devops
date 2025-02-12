@@ -1,9 +1,9 @@
 const express = require("express");
-const jwt = require("jsonwebtoken"); // Import JWT
+const jwt = require("jsonwebtoken"); 
 const app = express();
 
 const users = [];
-const SECRET_KEY = "your_secret_key"; // Use a strong secret key
+const SECRET_KEY = "your_secret_key";
 
 app.use(express.json());
 
@@ -23,7 +23,7 @@ app.post("/signin", (req, res) => {
   );
 
   if (user) {
-    const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: "1h" }); // Generate JWT
+    const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: "1h" }); 
     res.send({ token });
   } else {
     res.status(403).send({ message: "Invalid username or password" });
@@ -43,7 +43,6 @@ function authenticateToken(req, res, next) {
   });
 }
 
-// Protected Route (Only Accessible with JWT)
 app.get("/me", authenticateToken, (req, res) => {
   res.send({ username: req.user.username });
 });
