@@ -3,7 +3,7 @@ const app = express();
 const jwt = require("jsonwebtoken");
 
 const users = [];
-const SECRET_KEY = "your_secret_key";
+const SECRET_KEY = "rohitrana";
 
 app.use(express.json());
 

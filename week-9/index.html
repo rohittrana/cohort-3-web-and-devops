@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="onPress()" id="btn">Counter 0</button>
+    <script>
+      function onPress() {
+        const currentValue = document.getElementById("btn").innerHTML;
+        const parts = currentValue.split(" ");
+        
+        // Ensure correct extraction of the number
+        const currentCounter = parts.length > 1 ? parts[1] : "0";
+
+        // Increment the counter
+        const newCounter = parseInt(currentCounter) + 1;
+
+        // Update button text with a space
+        document.getElementById("btn").innerHTML = "Counter " + newCounter;
+      }
+    </script>
+  </body>
+</html>
