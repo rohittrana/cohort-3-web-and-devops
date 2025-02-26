@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import './App.css'
 import { useEffect } from 'react'
+import Counter from './Counter'
+import Autoup from './Autoup'
+import ColorChanger from './colorChanger'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,6 +19,9 @@ function App() {
   return (
 
     <>
+    <ColorChanger></ColorChanger>
+    {/* <Autoup></Autoup> */}
+    <Counter></Counter>
      <h1 id='text'>{count}</h1>
     </>
   )
