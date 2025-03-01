@@ -1,3 +1,51 @@
+// import { useState ,useEffect } from "react";
+
+// function App(){
+// const [count,setCount]= useState(0);
+// function increment(){
+//  setCount(currentValue =>currentValue+1)
+// }
+// useEffect(()=>{
+//   console.log("this run only once")
+//   setInterval(increment,1000);
+// },[])
+
+//   return(
+//     <>
+//     {count}
+//     </>
+//   )
+// }
+
+// export default App;
+
+import { useState, useEffect } from "react";
+
+function App() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    // Fetch the API when the component mounts
+    fetch("https://jsonplaceholder.typicode.com/todos/1")
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
+  return (
+    <div>
+      <h1>API Data</h1>
+      {data ? (
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
+}
+
+export default App;
+
 // function App() {
 //   return (
 //     <div
@@ -117,16 +165,48 @@
 // }
 
 // export default App;
-import Logic from './Logic';
-import Pratice from './pratice';
-import Prop from './Prop'
-function App() {
-  return (
-    <>
-    <Logic></Logic>
-      <Prop></Prop>
-      <Pratice></Pratice>
-    </>
-  );
-}
-export default App;
+// import Logic from "./Logic";
+// import Pratice from "./pratice";
+// import Prop from "./Prop";
+// import Post from "./Post";
+// import { useState } from "react";
+// function App() {
+//   return (
+//     <>
+//       <Greeting name={"rohit"}></Greeting>
+//       <Post></Post>
+//       <Logic></Logic>
+//       <Prop></Prop>
+//       <Pratice></Pratice>
+//     </>
+//   );
+// }
+
+// function Greeting(props) {
+//   const [count, setCount] = useState(0);
+//   const [title, setTitle] = useState("");
+//   const [color, Setcolor] = useState("");
+
+//   return (
+//     <div style={{ backgroundColor: color, padding: 20 }}>
+//       <input
+//         type="text"
+//         placeholder="Title"
+//         onChange={(e) => setTitle(e.target.value)}
+//         value={title}
+//       />
+//       <button onClick={() => alert(title)}>Show Title</button>
+//       <button onClick={() => setCount(count + 1)}>Counter: {count}</button>
+//       <button onClick={() => setCount(0)}>Counter: {count}</button>
+//       <button onClick={() => setCount(count - 1)}>Counter: {count}</button>
+//       <button onClick={() => Setcolor("red")}>Red</button>
+//       <button onClick={() => Setcolor("Blue")}>Blue</button>
+//       <button onClick={() => Setcolor("Green")}>Green</button>
+//       <button onClick={() => Setcolor("Pink")}>Pink</button>
+//       <button onClick={() => Setcolor("Black")}>Black</button>
+//       <button onClick={() => Setcolor("white")}>White</button>
+//     </div>
+//   );
+// }
+
+// export default App;

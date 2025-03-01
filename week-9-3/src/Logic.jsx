@@ -1,15 +1,14 @@
 import { useState } from "react";
 
 function Logic() {
-  const { message, SetMessage } = useState(true);
-  function toogle(){
-               SetMessage(!message);
-  }
-  return <>
-    <button onClick={toogle}>
+  const [isVisible, setIsVisible] = useState(false);
 
-    </button>
-    {!message && <p>This message is condition rendered !</p>}
-  </>;
+  return (
+    <div>
+      <button onClick={() => setIsVisible(!isVisible)}>Toggle Message</button>
+      {isVisible && <p>This message is conditionally rendered!</p>}
+    </div>
+  );
 }
+
 export default Logic;
