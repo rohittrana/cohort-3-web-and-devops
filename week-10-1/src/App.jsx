@@ -10,10 +10,13 @@ import {
 } from "react-router-dom";
 import Blogs from "./Pages/Blogs";
 import Content from "./Pages/Content";
+
+import Nma from "./Nma";
 function App() {
   return (
     <div>
       <BrowserRouter>
+        <Nma></Nma>
         <Link to={"/blog-of-allen"}>
           <button>Blogs</button>
         </Link>
