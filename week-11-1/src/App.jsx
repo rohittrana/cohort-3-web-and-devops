@@ -84,16 +84,91 @@
 
 // export default App
 
-import { useEffect, useState } from 'react';
-import Pratice from './Hooks/Pratice'
-import PraticeTwo from './Hooks/praticetwo';
-function App(){
+// import { useEffect, useState } from 'react';
+// import Pratice from './Hooks/Pratice'
+// import PraticeTwo from './Hooks/praticetwo';
+// function App(){
 
-  return(
+//   return(
+//     <>
+//     <PraticeTwo></PraticeTwo>
+//     <Pratice></Pratice>
+//     </>
+//   )
+// }
+// export default App;
+
+// import { use } from "react";
+// import { useState,useEffect } from "react";
+
+// function App(){
+//   const [count, setCount]= useState(0);
+//   function Increment(){
+//     setCount(count+1);
+//   }
+
+//   useEffect(()=>{
+//     const interval = setInterval(() => {
+//         setCount((prev)=>prev+1);
+//     }, 1000);
+//     return()=>clearInterval(interval);
+//   },[])
+
+//   return(
+//     <>
+//       <button> Increment {count}</button>
+//     </>
+//   )
+// }
+// export default App
+
+import { useState, useEffect } from "react";
+
+function App() {
+  const [post, setPost] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        const data = await response.json();
+        setPost(data);
+      } catch (error) {
+        console.log(`Error is in data`, error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+  if (loading) {
+    return <div>loading....</div>;
+  }
+  return (
     <>
-    <PraticeTwo></PraticeTwo>
-    <Pratice></Pratice>
+      <>
+        {post.map((user) => (
+          <div
+            key={user.id}
+            style={{
+              display: "flex",
+              alignContent: "center",
+              listStyle: "none",
+              padding: "10px 30px",
+              gap: 40,
+            }}
+          >
+            <ol>
+              <li style={{ color: "red" }}>{user.name}</li>
+              <li style={{ color: "pink" }}>{user.email}</li>
+            </ol>
+          </div>
+        ))}
+      </>
     </>
-  )
+  );
 }
 export default App;
