@@ -7,7 +7,6 @@ const SECRET_KEY = "rohitrana";
 
 app.use(express.json());
 
-// Signup Route
 app.post("/signup", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -16,7 +15,6 @@ app.post("/signup", (req, res) => {
   res.send(`Your account was created successfully`);
 });
 
-// Signin Route
 app.post("/signin", (req, res) => {
   const { username, password } = req.body;
 
@@ -37,7 +35,6 @@ app.post("/signin", (req, res) => {
   }
 });
 
-// Protected Route (Get User Info)
 app.get("/me", (req, res) => {
   const token = req.headers.token; 
   try {
@@ -64,7 +61,6 @@ app.get("/me", (req, res) => {
   }
 });
 
-// Start the server
 app.listen(3000, () => {
   console.log(`Server is running on port 3000`);
 });
